@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SecondChance – Items</title>
+  <link rel="stylesheet" href="/app/style.css">
+  <script src="/app/common.js"></script>
+</head>
+<body>
+  <nav id="navbar"></nav>
+  <main>
+    <h1>Available Items</h1>
+    <div id="items" class="grid">Loading...</div>
+  </main>
+  <script>
+    fetch(`${API}/api/secondchance/items`)
+      .then(r => r.json())
+      .then(items => {
+        document.getElementById('items').innerHTML = items.map(itemCard).join('')
+      })
+      .catch(() => {
+        document.getElementById('items').textContent = 'Could not load items.'
+      })
+  </script>
+</body>
+</html>

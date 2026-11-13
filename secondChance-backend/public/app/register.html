@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SecondChance – Register</title>
+  <link rel="stylesheet" href="/app/style.css">
+  <script src="/app/common.js"></script>
+</head>
+<body>
+  <nav id="navbar"></nav>
+  <main>
+    <h1>Register</h1>
+    <form id="form">
+      <label for="firstName">First name</label>
+      <input id="firstName" required>
+      <label for="lastName">Last name</label>
+      <input id="lastName" required>
+      <label for="email">Email</label>
+      <input id="email" type="email" required>
+      <label for="password">Password</label>
+      <input id="password" type="password" minlength="6" required>
+      <br><br>
+      <button type="submit">Register</button>
+      <div id="message" class="message"></div>
+    </form>
+  </main>
+  <script>
+    document.getElementById('form').addEventListener('submit', async (e) => {
+      e.preventDefault()
+      const body = {
+        firstName: document.getElementById('firstName').value,
+        lastName: document.getElementById('lastName').value,
+        email: document.getElementById('email').value,
+        password: document.getElementById('password').value
+      }
+      const res = await fetch(`${API}/api/auth/register`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      })
+      const data = await res.json()
+      const msg = document.getElementById('message')
+      if (data.authtoken) {
+        sessionStorage.setItem('auth-token', data.authtoken)
+        sessionStorage.setItem('name', body.firstName)
+        sessionStorage.setItem('email', data.email)
+        window.location.href = '/app/main.html'
+      } else {
+        msg.textContent = data.error || 'Registration failed'
+      }
+    })
+  </script>
+</body>
+</html>

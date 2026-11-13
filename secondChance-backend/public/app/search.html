@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SecondChance – Search</title>
+  <link rel="stylesheet" href="/app/style.css">
+  <script src="/app/common.js"></script>
+</head>
+<body>
+  <nav id="navbar"></nav>
+  <main>
+    <h1>Search Items</h1>
+    <div class="filters">
+      <div>
+        <label for="name">Name</label>
+        <input id="name" placeholder="e.g. chair">
+      </div>
+      <div>
+        <label for="category">Category</label>
+        <select id="category">
+          <option value="">All</option>
+          <option>Living</option><option>Kitchen</option><option>Office</option>
+          <option>Bedroom</option><option>Bathroom</option><option>Garden</option>
+        </select>
+      </div>
+      <div>
+        <label for="condition">Condition</label>
+        <select id="condition">
+          <option value="">All</option>
+          <option>New</option><option>Like New</option><option>Reasonable</option><option>Older</option>
+        </select>
+      </div>
+      <button id="go">Search</button>
+    </div>
+    <div id="results" class="grid"></div>
+  </main>
+  <script>
+    async function search () {
+      const params = new URLSearchParams()
+      for (const key of ['name', 'category', 'condition']) {
+        const v = document.getElementById(key).value
+        if (v) params.set(key, v)
+      }
+      history.replaceState(null, '', '?' + params.toString())
+      const res = await fetch(`${API}/api/secondchance/search?${params}`)
+      const items = await res.json()
+      document.getElementById('results').innerHTML = items.length
+        ? items.map(itemCard).join('')
+        : '<p>No items found.</p>'
+    }
+    // Restore filters from the URL
+    const q = new URLSearchParams(window.location.search)
+    for (const key of ['name', 'category', 'condition']) {
+      if (q.get(key)) document.getElementById(key).value = q.get(key)
+    }
+    document.getElementById('go').addEventListener('click', search)
+    if ([...q.keys()].length) search()
+  </script>
+</body>
+</html>

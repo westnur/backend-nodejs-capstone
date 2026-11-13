@@ -1,0 +1,22 @@
+body { margin: 0; font-family: Arial, Helvetica, sans-serif; background: #f4f8f4; color: #1b3a1b; }
+#navbar { display: flex; gap: 18px; align-items: center; padding: 14px 28px; background: #2e7d32; }
+#navbar a { color: #fff; text-decoration: none; }
+#navbar .brand { font-weight: bold; font-size: 1.3rem; }
+#navbar .spacer { flex: 1; }
+#navbar .welcome { color: #fff; }
+main { max-width: 1100px; margin: 30px auto; padding: 0 20px; }
+h1 { margin-top: 0; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; }
+.card { background: #fff; border-radius: 10px; padding: 16px; box-shadow: 0 2px 6px rgba(0,0,0,.08); }
+.card .img { height: 110px; border-radius: 8px; background: #c8e6c9; display: flex; align-items: center; justify-content: center; color: #2e7d32; font-weight: bold; }
+.card h3 { margin: 12px 0 4px; }
+.muted { color: #5f7a5f; font-size: .9rem; }
+.button, button { display: inline-block; padding: 10px 18px; background: #2e7d32; color: #fff; border: none; border-radius: 6px; text-decoration: none; cursor: pointer; font-size: 1rem; }
+form { background: #fff; padding: 24px; border-radius: 10px; max-width: 420px; box-shadow: 0 2px 6px rgba(0,0,0,.08); }
+label { display: block; margin: 12px 0 4px; font-weight: bold; }
+input, select { width: 100%; padding: 9px; border: 1px solid #b7c9b7; border-radius: 6px; box-sizing: border-box; font-size: 1rem; }
+.message { margin-top: 14px; font-weight: bold; }
+.details { background: #fff; padding: 24px; border-radius: 10px; max-width: 600px; box-shadow: 0 2px 6px rgba(0,0,0,.08); }
+.details table td { padding: 6px 14px 6px 0; }
+.filters { display: flex; gap: 12px; align-items: end; margin-bottom: 24px; flex-wrap: wrap; }
+.filters div { min-width: 180px; }

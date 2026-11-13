@@ -38,7 +38,9 @@ async function loadData () {
   }
 }
 
-loadData()
+if (require.main === module) {
+  loadData()
+}
 
 module.exports = {
   loadData

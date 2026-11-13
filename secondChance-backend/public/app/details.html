@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SecondChance – Item Details</title>
+  <link rel="stylesheet" href="/app/style.css">
+  <script src="/app/common.js"></script>
+</head>
+<body>
+  <nav id="navbar"></nav>
+  <main>
+    <div id="details" class="details">Loading...</div>
+  </main>
+  <script>
+    const id = new URLSearchParams(window.location.search).get('id')
+    fetch(`${API}/api/secondchance/items/${id}`)
+      .then(r => r.json())
+      .then(item => {
+        document.getElementById('details').innerHTML = `
+          <h1>${item.name}</h1>
+          <table>
+            <tr><td><b>Category</b></td><td>${item.category}</td></tr>
+            <tr><td><b>Condition</b></td><td>${item.condition}</td></tr>
+            <tr><td><b>Age</b></td><td>${item.age_days} days (${item.age_years} years)</td></tr>
+            <tr><td><b>Posted by</b></td><td>${item.posted_by}</td></tr>
+            <tr><td><b>Zip code</b></td><td>${item.zipcode}</td></tr>
+            <tr><td><b>Date added</b></td><td>${new Date(item.date_added * 1000).toLocaleDateString()}</td></tr>
+          </table>
+          <p>${item.description}</p>
+          <a class="button" href="/app/main.html">Back to items</a>`
+      })
+      .catch(() => {
+        document.getElementById('details').textContent = 'Item not found.'
+      })
+  </script>
+</body>
+</html>

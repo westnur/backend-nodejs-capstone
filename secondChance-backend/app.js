@@ -16,6 +16,8 @@ const port = process.env.PORT || 3060
 connectToDatabase()
   .then(() => {
     pinoLogger.info('Connected to DB')
+    // Seed the items collection on first start if it is empty
+    return require('./util/import-mongo/index.js').loadData()
   })
   .catch((e) => console.error('Failed to connect to DB', e))
 
