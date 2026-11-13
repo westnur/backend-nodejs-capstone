@@ -19,13 +19,12 @@ jobs:
         with:
           node-version: 18
 
-      - name: Install Dependencies
+      - name: Install and Run Linter
         working-directory: secondChance-backend
-        run: npm install
-
-      - name: Run Linter
-        working-directory: secondChance-backend
-        run: npx eslint . && echo "Linted javascript files successfully"
+        run: |
+          npm install
+          npx eslint .
+          echo "Linted javascript files successfully"
 
   client_build:
     name: Build Backend
