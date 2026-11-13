@@ -1,0 +1,2 @@
+$ curl -s localhost:3060/api/secondchance/items/1
+{"_id":"6af72295c54c73162604317f","id":"1","name":"Vintage Wooden Chair","category":"Living","condition":"Like New","posted_by":"user2","zipcode":"01000","date_added":1730086400,"age_days":120,"age_years":0.3,"description":"A sturdy oak chair in great shape.","image":"/images/1.jpeg","comments":[]}

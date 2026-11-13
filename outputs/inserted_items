@@ -1,0 +1,7 @@
+$ npm run import-data
+
+> secondchance-backend@1.0.0 import-data
+> node util/import-mongo/index.js
+
+Connected successfully to server
+Inserted documents: 16
