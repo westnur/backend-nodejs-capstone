@@ -1,0 +1,54 @@
+name: 'CI/CD'
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint_js:
+    name: Lint JavaScript Files
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install Dependencies
+        working-directory: secondChance-backend
+        run: npm install
+
+      - name: Run Linter
+        working-directory: secondChance-backend
+        run: npx eslint . && echo "Linted javascript files successfully"
+
+  client_build:
+    name: Build Backend
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install and Check Backend
+        working-directory: secondChance-backend
+        run: |
+          npm install
+          node --check app.js
+          echo "Backend built successfully"
+
+      - name: Install Sentiment Service
+        working-directory: sentiment
+        run: |
+          npm install
+          node --check index.js
+          echo "Sentiment service built successfully"
