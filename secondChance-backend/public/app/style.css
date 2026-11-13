@@ -20,3 +20,5 @@ input, select { width: 100%; padding: 9px; border: 1px solid #b7c9b7; border-rad
 .details table td { padding: 6px 14px 6px 0; }
 .filters { display: flex; gap: 12px; align-items: end; margin-bottom: 24px; flex-wrap: wrap; }
 .filters div { min-width: 180px; }
+
+#deploy-url { background: #1b3a1b; color: #c8e6c9; font-family: monospace; font-size: .9rem; padding: 6px 28px; }

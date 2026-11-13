@@ -41,3 +41,11 @@ function itemCard (item) {
 }
 
 document.addEventListener('DOMContentLoaded', renderNavbar)
+
+// Show the live deployment URL on every page
+document.addEventListener('DOMContentLoaded', () => {
+  const bar = document.createElement('div')
+  bar.id = 'deploy-url'
+  bar.textContent = 'Deployment URL: ' + window.location.href
+  document.body.prepend(bar)
+})

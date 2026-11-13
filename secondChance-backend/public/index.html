@@ -28,6 +28,7 @@
       font-size: 1.1rem;
     }
     a.button:hover { background: #1b5e20; }
+    #deploy-url { position: fixed; top: 0; left: 0; right: 0; background: #1b3a1b; color: #c8e6c9; font-family: monospace; font-size: .9rem; padding: 6px 28px; text-align: left; }
   </style>
 </head>
 <body>
@@ -36,5 +37,7 @@
     <p>Give your household items a second life. Share what you no longer need and find free items near you instead of buying new.</p>
     <a class="button" href="/app/main.html">Get Started</a>
   </main>
+  <div id="deploy-url"></div>
+  <script>document.getElementById('deploy-url').textContent = 'Deployment URL: ' + window.location.href</script>
 </body>
 </html>
